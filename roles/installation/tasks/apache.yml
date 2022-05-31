@@ -1,0 +1,28 @@
+- name: install apache2
+  apt:
+    name:
+      - apache2
+      - pip
+      - git
+    update_cache: yes
+
+- name: Enable mod_rewrite
+  apache2_module: name={{ item }} state=present
+  with_items:
+    - alias
+    - rewrite
+    - proxy_http
+    - proxy_http2
+    - proxy_wstunnel
+    - ssl
+    - vhost_alias
+    - xml2enc
+  notify: restart apache2
+
+- name: Enable cache related modules
+  apache2_module: name={{ item }} state=present
+  with_items:
+    - cache_disk
+    - cache
+    - file_cache
+  notify: restart apache2
