@@ -1,0 +1,47 @@
+- name: install apache2
+  apt:
+    name:
+      - curl
+      - pip
+      - git
+      - snapd
+      - core
+      - speedcrunch
+      - redis-server
+      - php-redis
+    update_cache: yes
+
+- name: Download and install Composer
+  shell: curl -sS https://getcomposer.org/installer | php
+  args:
+    chdir: /usr/src/
+    creates: /usr/local/bin/composer
+    warn: false
+
+- name: Add Composer to global path
+  copy:
+    dest: /usr/local/bin/composer
+    group: root
+    mode: "0755"
+    owner: root
+    src: /usr/src/composer.phar
+    remote_src: yes
+
+- name: Install NodeJs
+  shell: curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh | bash
+
+- name: Install PHPStorm, Webstom, Code, postman, Telegram
+  community.general.snap:
+    name:
+      - code
+      - phpstorm
+      - webstorm
+      - postman
+      - telegram-desktop
+    classic: yes
+
+- name: Install Laravel via composer
+  shell: composer global require laravel/installer
+
+- name: Install Quasar via npm
+  shell: npm install -g @quasar/cli

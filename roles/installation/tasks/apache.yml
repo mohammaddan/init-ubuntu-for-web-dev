@@ -2,9 +2,6 @@
   apt:
     name:
       - apache2
-      - pip
-      - git
-    update_cache: yes
 
 - name: Enable mod_rewrite
   apache2_module: name={{ item }} state=present
