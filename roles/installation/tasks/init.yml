@@ -1,11 +1,14 @@
-- name: install apache2
+- name: Add the user {{ user }}
+  ansible.builtin.user:
+    name: "{{ user }}"
+
+- name: Install requirements
   apt:
     name:
       - curl
       - pip
       - git
       - snapd
-      - core
       - speedcrunch
       - redis-server
       - php-redis
