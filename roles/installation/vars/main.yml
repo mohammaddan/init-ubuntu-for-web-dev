@@ -1,1 +1,6 @@
+user: md
 mysql_root_password: 123456789
+toolbox_version: "1.24.12080"
+toolbox_install_dir: "/opt"
+toolbox_install_for_user: "mohammad_61"
+node_version: 14

@@ -16,6 +16,7 @@
       - php7.4-xmlrpc
       - php7.4-soap
       - php7.4-intl
+      - php-imagick
       - libapache2-mod-php
     state: present
     update_cache: yes

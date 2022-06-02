@@ -1,5 +1,9 @@
 - name: Install MySQL
-  apt: name=mysql-server update_cache=yes cache_valid_time=3600 state=present
+  apt:
+    name: mysql-server
+    update_cache: yes
+    cache_valid_time: 3600
+    state: present
 
 - name: Start the MySQL service
   service:
